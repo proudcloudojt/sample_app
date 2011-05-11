@@ -16,7 +16,8 @@ header img {
 section {
   margin-top: 1em;
   font-size: 120%;
-  background: black;
+  background: transparent;
+  padding: 100px;
 }
 
 section h1 {
