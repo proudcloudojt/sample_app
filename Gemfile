@@ -6,17 +6,18 @@ gem 'annotate-models' , '1.0.4'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-
+gem 'gravatar_image_tag', '1.0.0.pre2'
 # Use unicorn as the web server
 # gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
-
+group :test do
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
 # gem 'ruby-debug19', :require => 'ruby-debug'
-
+gem 'factory_girl_rails' , '1.0'
+end
 # Bundle the extra gems:
 # gem 'bj'
 # gem 'nokogiri'
