@@ -177,3 +177,11 @@ th_errors {
   list-style: square;
 }
 
+ul.ers {
+  margin-top: 1em;
+}
+
+.users li {
+  list-style: none;
+}
+

@@ -25,24 +25,7 @@ require 'spec_helper'
 
   it "should have a signup page at '/signup'" do
     get '/signup'
-    response.should have_selector('title', :content => "Sign up")
-  end
 
-  it "should have the right links on the layout" do
-    visit root_path
-    click_link "About"
-    response.should have_selector('title', :content => "About")
-    click_link "Help"
-    response.should # fill in
-    click_link "Contact"
-    response.should # fill in
-    click_link "Home"
-    response.should # fill in
-    click_link "Sign up now!"
-    response.should # fill in
-
-  end 
-    
   describe "when not signed in" do
     it "should have a signin link" do
       visit root_path
@@ -67,15 +50,10 @@ require 'spec_helper'
                                          :content => "Sign out")
     end
 
-    it "should have a profile link" 
-    end
-
-   it "should have a profile link" do
+    it "should have a profile link" do
       visit root_path
       response.should have_selector("a", :href => user_path(@user),
                                          :content => "Profile")
     end
   end
-
-
 end
