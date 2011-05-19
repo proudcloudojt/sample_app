@@ -3,7 +3,7 @@
 }
 
 body {
-  background: #ABCDEF;
+  background:white;
 }
 
 header {
@@ -17,7 +17,7 @@ header img {
 
 section {
   margin-top: 1em;
-  font-size: 120%;
+  font-size: 87%;
   padding: ;
   background: #fff;
 }
@@ -105,6 +105,9 @@ margin-right: auto; */
 
 footer {
   text-align: center;
+  clear: both ;height:3.5em;
+  background:#4C2516;
+  color:#F2DC87;
   margin-top: 10px;
   width: 710px;
   margin-left: auto;
@@ -131,7 +134,7 @@ td.sidebar {
   width: 30%;
   padding: 1em;
   vertical-align: top;
-  background: #ffc;
+  background:#94B26F;
 }
 
 .profile img.gravatar {

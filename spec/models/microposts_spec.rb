@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-  describe Microposts do
+  describe Micropost do
    
     before(:each) do
      @user = Factory(:user) 
@@ -8,7 +8,7 @@ require 'spec_helper'
 end
 
   it "should create a new instance given valid attributes" do
- 	Micropost.create!(@attr)
+ 	@user.micropost.create!(@attr)
   end
 
   describe "user associations" do 
@@ -17,23 +17,16 @@ end
 	@micropost = @user.microposts.create(@attr)
   end
 
+  it "should have a user attribute" do
+	@micropost.should respond_to(:user)
+  end  
+
   it "should have the right associated user" do
      @micropost.user_id.should == @user.id
      @micropost.user.should == @user
   end
  end
  
-  describe "micropost associations" do
-
-    before(:each) do
-      @user = User.create(@attr)
-    end
-
-    it "should have a microposts attribute" do
-      @user.should respond_to(:microposts)
-    end
-  end
-
    describe "validations" do
 
     it "should require a user id" do
@@ -47,8 +40,35 @@ end
     it "should reject long content" do
       @user.microposts.build(:content => "a" * 141).should_not be_valid
     end
+  
+    describe "from_users_followed_by" do
+
+    before(:each) do
+      @other_user = Factory(:user, :email => Factory.next(:email))
+      @third_user = Factory(:user, :email => Factory.next(:email))
+
+      @user_post  = @user.microposts.create!(:content => "foo")
+      @other_post = @other_user.microposts.create!(:content => "bar")
+      @third_post = @third_user.microposts.create!(:content => "baz")
+
+      @user.follow!(@other_user)
+    end
+
+    it "should have a from_users_followed_by class method" do
+      Micropost.should respond_to(:from_users_followed_by)
+    end
+
+    it "should include the followed user's microposts" do
+      Micropost.from_users_followed_by(@user).should include(@other_post)
+    end
+
+    it "should include the user's own microposts" do
+      Micropost.from_users_followed_by(@user).should include(@user_post)
+    end
+
+    it "should not include an unfollowed user's microposts" do
+      Micropost.from_users_followed_by(@user).should_not include(@third_post)
+    end
   end
 end
-
-
 	
