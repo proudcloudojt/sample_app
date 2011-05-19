@@ -47,6 +47,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    nokogiri (1.4.4)
     polyglot (0.3.1)
     rack (1.2.2)
     rack-mount (0.6.14)
@@ -86,6 +87,10 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.27)
+    webrat (0.7.1)
+      nokogiri (>= 1.2.0)
+      rack (>= 1.0)
+      rack-test (>= 0.5.3)
     will_paginate (3.0.pre2)
 
 PLATFORMS
@@ -97,7 +102,9 @@ DEPENDENCIES
   faker (= 0.3.1)
   gravatar_image_tag (= 0.1.0)
   rails (= 3.0.7)
+  rspec (= 2.5.0)
   rspec-rails
   spork (= 0.9.0.rc5)
   sqlite3
+  webrat (= 0.7.1)
   will_paginate (= 3.0.pre2)

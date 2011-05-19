@@ -11,13 +11,15 @@ header {
 }
 
 header img {
+  padding: 1em;
+  background: #fff;
 }
 
 section {
   margin-top: 1em;
   font-size: 120%;
-  background: transparent;
-  padding: 100px;
+  padding: ;
+  background: #fff;
 }
 
 section h1 {
@@ -47,7 +49,8 @@ nav {
 }
 
 nav {
-  background-color: black;
+  background-color: white;
+  padding: 0 ;
   white-space: nowrap;
 }
 
@@ -78,8 +81,9 @@ nav ul li a:hover {
 /* Sign up button */
 
 a.signup_button {
-  margin-left: auto;
-  margin-right: auto;
+  /*margin-left: auto;
+margin-right: auto; */
+  margin-left: 30px;
   display: block;
   text-align: center;
   width: 190px;
@@ -88,15 +92,15 @@ a.signup_button {
   font-size: 150%;
   font-weight: bold;
   padding: 20px;
+  float: right;
 }
-
 
 /* Round corners */
 
 .round {
-  -moz-border-radius:    10px;
+  -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
-  border-radius:         10px;
+  border-radius: 10px;
 }
 
 footer {
@@ -119,7 +123,7 @@ table.profile {
 }
 
 td.main {
-  width: 50%;
+  width: 30%;
   padding: 1em;
 }
 
@@ -134,9 +138,12 @@ td.sidebar {
   border: 1px solid #999;
   margin-bottom: -15px;
 }
+
 div.field, div.actions {
   margin-bottom: 10px;
-th_errors {
+}
+
+.field_with_errors {
   margin-top: 10px;
   padding: 2px;
   background-color: red;
@@ -177,7 +184,7 @@ th_errors {
   list-style: square;
 }
 
-ul.ers {
+ul.users {
   margin-top: 1em;
 }
 
@@ -185,3 +192,57 @@ ul.ers {
   list-style: none;
 }
 
+h1.micropost {
+  margin-bottom: 0.3em;
+}
+
+table.microposts {
+  margin-top: 1em;
+}
+
+table.microposts tr {
+  height: 70px;
+}
+
+table.microposts tr td.gravatar {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  width: 50px;
+}
+
+table.microposts tr td.micropost {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  padding-top: 10px;
+}
+
+table.microposts tr td.micropost span.timestamp {
+  display: block;
+  font-size: 85%;
+  color: #666;
+}
+
+div.user_info img {
+  padding-right: 0.1em;
+}
+
+div.user_info a {
+  text-decoration: none;
+}
+
+div.user_info span.user_name {
+  position: absolute;
+}
+
+div.user_info span.microposts {
+  font-size: 80%;
+}
+
+form.new_micropost {
+  margin-bottom: 2em;
+}
+
+form.new_micropost textarea {
+  height: 4em;
+  margin-bottom: 0;
+}
