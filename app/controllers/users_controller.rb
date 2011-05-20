@@ -54,16 +54,23 @@ class UsersController < ApplicationController
    end
    
   def following
-    @title = "Following"
-    @user = User.find(params[:id])
-    @users = @user.following.paginate(:page => params[:page])
-    render 'show_follow'
+	@title = "Following"
+	@user = User.find(params[:id])
+	@users = @user.following.paginate(:page => params[:page])
+	render 'show_follow'
   end
 
   def followers
-    @title = "Followers"
+ 	@title = "Followers"
+	@user = User.find(params[:id])
+	@users = @user.followers.paginate(:page => params[:page])
+	render 'show_follow'	
+  end
+   
+   def show_follow(action)
+    @title = action.to_s.capitalize
     @user = User.find(params[:id])
-    @users = @user.followers.paginate(:page => params[:page])
+    @users = @user.send(action).paginate(:page => params[:page])
     render 'show_follow'
   end
 
@@ -77,7 +84,7 @@ class UsersController < ApplicationController
   def correct_user
       @user = User.find(params[:id])
       redirect_to(root_path) unless current_user?(@user)
-    end
+  end
   
   def admin_user
       redirect_to(root_path) unless current_user.admin?

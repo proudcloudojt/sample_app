@@ -39,6 +39,13 @@ require 'spec_helper'
 
   describe "DELETE 'destroy'" do
     
+    before(:each) do
+	@user = test_sign_in(Factory(:user))
+	@followed = Factory(:user, :email => Factory.next(:email))	
+	@user.follow!(@followed)
+	@relationship = @user.relationships.find_by_followed_id(@followed)
+    end
+
     it "should destroy a relationship using Ajax" do
       lambda do
         xhr :delete, :destroy, :id => @relationship
