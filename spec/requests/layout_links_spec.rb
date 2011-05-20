@@ -56,4 +56,12 @@ require 'spec_helper'
                                          :content => "Profile")
     end
   end
+
+   
+    it "should have a direct_messages link" do
+	visit root_path
+	response.should have_selector("a", :href => recieved_direct_messages_path,:content => "Direct Messages")
+
+   end
+  end
 end
