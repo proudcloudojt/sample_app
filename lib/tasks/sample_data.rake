@@ -12,7 +12,7 @@ end
 
   def make_users
     admin = User.create!(:name => "Example User",
-			 :username => "exampleuser"
+			 :username => "exampleuser",
 			 :email => "example@railstutorial.org",
 			 :password => "foobar",
 			 :password_confirmation => "foobar")
@@ -27,7 +27,7 @@ end
 		   :username => username,
                    :email => email,
                    :password => password,
-                   :password_confirmation => password)
+                   :password_confirmation => password_confirmation)
     end
   end
 
@@ -47,4 +47,3 @@ end
   following.each { |followed| user.follow!(followed) }
   followers.each { |follower| follower.follow!(user) }
 end
-

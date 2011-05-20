@@ -1,7 +1,12 @@
 class Micropost < ActiveRecord::Base
-  attr_accessible :content
+  attr_accessible :content , :recipients
+ 
+  USERNAME_REGEX = /@\w+/i
 
   belongs_to :user
+
+  has_many :recipients, :dependent => :destroy
+  has_many :replied_users, :through => :recipients, :source => "user"
 
   validates :content, :presence => true, :length => { :maximum => 140 }
   validates :user_id, :presence => true
@@ -10,6 +15,8 @@ class Micropost < ActiveRecord::Base
 
   scope :from_users_followed_by, lambda {|user| followed_by(user)}
 
+  after_save :save_recipients 
+
    private
   
    def self.followed_by(user)
@@ -17,4 +24,25 @@ class Micropost < ActiveRecord::Base
 	where("user_id IN (#{followed_ids}) OR user_id = :user_id",
 		{ :user_id => user})
      end 
-   end
+  
+   def save_recipients
+      return unless reply?
+
+      people_replied.each do |user|
+        Recipient.create!(:micropost_id => self.id, :user_id => user.id)
+      end
+    end
+
+    def reply?
+      self.content.match( USERNAME_REGEX )
+    end
+
+    def people_replied
+      users = []
+      self.content.clone.gsub!( USERNAME_REGEX ).each do |username|
+        user = User.find_by_username(username[1..-1])
+        users << user if user
+      end
+      users
+    end
+end
